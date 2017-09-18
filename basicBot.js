@@ -3683,9 +3683,9 @@
                                 worthy = worthyAlg == 10 ? true : false;
 
                             // sly benzi 👀
-                            if (botCreatorIDs.indexOf(id) > -1) {
-                                worthy = true;
-                            }
+                            // if (botCreatorIDs.indexOf(id) > -1) {
+                            //     worthy = true;
+                            // } lol nope
 
 
                             for (var i = 0; i < djlist.length; i++) {
@@ -3743,6 +3743,21 @@
                                 }));
                             }
                         }
+                    }
+                }
+            },
+
+            thorToggleCommand: {
+                command: 'tgthor',
+                rank: 'manager',
+                type: 'exact',
+                functionality: function (chat, cmd) {
+                    if (this.type === 'exact' && chat.message.length !== cmd.length) return void (0);
+                    if (!basicBot.commands.executable(this.rank, chat)) return void (0);
+                    else {
+                        basicBot.settings.thorCommand = !basicBot.settings.thorCommand;
+                        if (basicBot.settings.thorCommand) return API.sendChat('/me Thor has been enabled');
+                        else return API.sendChat('/me Thor has been disabled');
                     }
                 }
             },
